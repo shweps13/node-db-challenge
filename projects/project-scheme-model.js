@@ -25,7 +25,10 @@ function findProjectsById(id) {
     return db('projects')
     .where({ id })
     .first()
-    .then(res => res);
+    .then(project => {
+        project.completed === 1 ? project.completed = true : project.completed = false
+        return project
+      })
 }
 
 function findRes(stepID) {
