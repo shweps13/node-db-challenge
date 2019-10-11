@@ -8,7 +8,17 @@ module.exports = {
 }
 
 function findProjects() {
-    return db('projects');
+    return db('projects')
+    .then(projects => {
+        const convert = []
+  
+        projects.forEach(inProject => {
+          inProject.completed === 1 ? inProject.completed = true : inProject.completed = false
+          convert.push(inProject)
+        })
+  
+        return convert
+      });
 }
 
 function findProjectsById(id) {
