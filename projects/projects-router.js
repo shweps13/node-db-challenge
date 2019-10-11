@@ -14,13 +14,15 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/tasks', (req, res) => {
-  Schemes.findTasks()
+router.get('/:id', (req, res) => {
+    const { id } = req.params
+
+  Schemes.findProjectsById(id)
   .then(schemes => {
     res.json(schemes);
   })
   .catch(err => {
-    res.status(500).json({ message: 'Failed to get tasks' });
+    res.status(500).json({ message: 'Failed to get project' });
   });
 });
 

@@ -2,7 +2,7 @@ const db = require('../data/db-config.js');
 
 module.exports = {
     findProjects,
-    findTasks,
+    findProjectsById,
     findRes
 }
 
@@ -10,8 +10,11 @@ function findProjects() {
     return db('projects');
 }
 
-function findTasks() {
-    return db('tasks');
+function findProjectsById(id) {
+    return db('projects')
+    .where({ id })
+    .first()
+    .then(res => res);
 }
 
 function findRes(stepID) {
