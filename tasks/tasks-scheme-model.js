@@ -2,7 +2,8 @@ const db = require('../data/db-config.js');
 
 module.exports = {
     findTasks,
-    findTasksById
+    findTasksById,
+    add
 }
 
 function findTasks() {
@@ -14,4 +15,8 @@ function findTasksById(id) {
     .where({ id })
     .first()
     .then(res => res);
+}
+
+function add(task) {
+    return db('tasks').insert(task, 'id');
 }

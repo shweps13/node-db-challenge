@@ -3,7 +3,8 @@ const db = require('../data/db-config.js');
 module.exports = {
     findProjects,
     findProjectsById,
-    findRes
+    findRes,
+    add
 }
 
 function findProjects() {
@@ -22,4 +23,8 @@ function findRes(stepID) {
     .join('resources as r', 'p.id' , '=', 'r.project_id')
     .select('r.project_id', 'r.name', 'r.description')
     .where({ project_id: stepID });
+}
+
+function add(project) {
+    return db('projects').insert(project, 'id');
 }

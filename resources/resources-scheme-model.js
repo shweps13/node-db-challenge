@@ -2,7 +2,8 @@ const db = require('../data/db-config.js');
 
 module.exports = {
     findResources,
-    findResourceById
+    findResourceById,
+    add
 }
 
 function findResources() {
@@ -14,4 +15,8 @@ function findResourceById(id) {
     .where({ id })
     .first()
     .then(res => res);
+}
+
+function add(resource) {
+    return db('resources').insert(resource, 'id');
 }

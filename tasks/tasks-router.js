@@ -26,5 +26,16 @@ Schemes.findTasksById(id)
 });
 });
 
+router.post('/', (req, res) => {
+  const taskData = req.body;
+
+  Schemes.add(taskData)
+  .then(scheme => {
+    res.status(201).json(scheme);
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to create new task' });
+  });
+});
 
 module.exports = router;

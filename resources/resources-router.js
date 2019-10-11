@@ -26,5 +26,16 @@ Schemes.findResourceById(id)
 });
 });
 
+router.post('/', (req, res) => {
+  const resourceData = req.body;
+
+  Schemes.add(resourceData)
+  .then(scheme => {
+    res.status(201).json(scheme);
+  })
+  .catch (err => {
+    res.status(500).json({ message: 'Failed to create new resource' });
+  });
+});
 
 module.exports = router;
