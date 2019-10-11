@@ -26,6 +26,18 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.get('/stretch/:id', (req, res) => {
+    const { id } = req.params
+
+  Schemes.findByIdStretch(id)
+  .then(schemes => {
+    res.json(schemes);
+  })
+  .catch(err => {
+    res.status(500).json({ message: 'Failed to get project' });
+  });
+});
+
 router.get('/:id/resourse', (req, res) => {
   const { id } = req.params;
 
